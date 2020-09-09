@@ -1,0 +1,26 @@
+git 知识点小结：
+1.git安装成功之后，需要进行设置；
+git config --global user.name 'suihongke'
+git config --global user.email '289851676@qq.com'
+因为git是分布式版本控制系统，每台机器都必须自报家门：你的名字和email地址
+注意：用了 git config和global参数标识本机的所有git仓库都会使用这个配置，当然也可以对某个特定仓库指定不同的用户名和Email地址
+2.创建git本地仓库时，文件目录最好不要有中文
+3.git init 命令把创建的目录变成git可管理的仓库，命令运行之后，文件夹中会多出一个.git文件夹，是用来跟踪管理版本库的，千万不要随便乱改
+4.git跟踪不了二进制文件的改动：word,图片，视频等，但是可以跟踪到文件大小的变化
+5.千万不要使用windows自带的记事本编辑文件，最好使用Notepad++,记得把默认编码设置为UTF-8
+6.正常操作流程：git add <file>  --> git commit -m '备注' --> git push
+7.版本回退：git reset --hard commit_id 或者 git reset --hard^. head 是指当前版本
+git log 可以查看提交历史，如果历史较多，不方便查看，可以使用　git log --pretty=oneline，该命令用于确定要回退到历史哪个版本
+git reflog 可以查看命令历史，用于确定要回退到未来哪个版本
+8.暂存区是git非常重要的概念
+9.git diff head -- <file> 用于查看版本库文件和工作区文件的区别
+10.撤销修改：a.还没放到暂存区：git checkout -- <file>  b:已经放到暂存区：git reset HEAD -- <FILE>，然后git checkout -- <file> c：已提交到本地版本库，直接回复历史版本即可，已推送远程版本库，好吧，自求多福吧
+11.删除文件：git rm <file>
+12.关联远程版本库
+a.登陆github,新建远程版本库，一路默认即可
+b.在本地仓库下运行命令 git remote add origin git@github.com:suihongke/myGit.git,远程库的名字就是origin
+c.然后再运行  git push -u origin master ,第一次推送加了 -u 参数，git不仅会把本地的master分支内容推送到远程新的master，还会把本地的master和远程的master关联起来，在以后推送或者拉取时就可以简化命令
+分布式最大的好处就是在本地工作完全不用考虑远程库的存在，就是没有联网都可以正常工作，当有网的时候再推送即可
+13.把远程版本库克隆到本地开发：git clone git@github.com:suihongke/myProject.git 
+git支持多种网络协议，默认git://使用ssh,但也可以使用https等其他网络协议，ssh协议速度更快，https的每次推送都需要口令
+
