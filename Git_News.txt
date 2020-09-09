@@ -23,4 +23,5 @@ c.然后再运行  git push -u origin master ,第一次推送加了 -u 参数，
 分布式最大的好处就是在本地工作完全不用考虑远程库的存在，就是没有联网都可以正常工作，当有网的时候再推送即可
 13.把远程版本库克隆到本地开发：git clone git@github.com:suihongke/myProject.git 
 git支持多种网络协议，默认git://使用ssh,但也可以使用https等其他网络协议，ssh协议速度更快，https的每次推送都需要口令
-
+14.分支管理：
+（1）新增并切换分支:git switch -c '分支名称'
