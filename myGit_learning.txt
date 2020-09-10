@@ -30,5 +30,6 @@ git支持多种网络协议，默认git://使用ssh,但也可以使用https等�
 （4）切换分支： git checkout <name> /git swithc <name>
 （5）合并分支到当前分支： git merge <name>
 （6）删除分支： git branch -d <name>
-15.合并冲突：
-git log --graph --pretty=oneline --abbrev-commit
+15.解决冲突：当两个分支同时修改一个文件，并都在各自分支提交时，再合并时，会报错，需要先手动解决冲突之后再合并
+git log --graph --pretty=oneline --abbrev-commit 命令可以看到分支合并图
+
