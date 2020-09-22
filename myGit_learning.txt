@@ -38,5 +38,12 @@ git支持多种网络协议，默认git://使用ssh,但也可以使用https等�
 （1）解决bug时，通常新建bug分支修复，然后合并，最后删除
 （2）当手头工作没有解决完成时候，先把git stash，修复bug之后再git stash pop,回到工作现场
 （3）再master分支上做的修复，想要同步到dev上，可直接使用命令 git cherry-pick <commitID> ,把bug修复提交的修改同步到当前分支，避免重复劳动
+（4）如果在删除一个没有合并过得分支，可以通过Git brahch -D <name> 强行删除
+（5）查看远程库信息，使用git remote -v；
+（6）本地新建的分支如果不推送到远程，对其他人就是不可见的；
+（7）从本地推送分支，使用git push origin branch-name，如果推送失败，先用git pull抓取远程的新提交；
+（8）在本地创建和远程分支对应的分支，使用git checkout -b branch-name origin/branch-name，本地和远程分支的名称最好一致；
+（9）建立本地分支和远程分支的关联，使用git branch --set-upstream branch-name origin/branch-name；
+（10）从远程抓取分支，使用git pull，如果有冲突，要先处理冲突。
 
 
