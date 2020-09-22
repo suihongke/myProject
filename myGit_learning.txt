@@ -31,14 +31,12 @@ git支持多种网络协议，默认git://使用ssh,但也可以使用https等�
 （5）合并分支到当前分支： git merge <name>
 （6）删除分支： git branch -d <name>
 15.解决冲突：当两个分支同时修改一个文件，并都在各自分支提交时，再合并时，会报错，需要先手动解决冲突之后再合并
-<<<<<<< HEAD
-git log --graph --pretty=oneline --abbrev-commit 命令可以看到分支合并图
-=======
+ git log --graph --pretty=oneline --abbrev-commit 命令可以看到分支合并图
 （1）git log --graph命令可以看到分支合并图
 （2）git merge --no-ff -m '注释说明' brahchName  带--no-ff参数时表示禁用fast forward 合并后的历史有分支信息，而fast forward 看不出来之前做过合并
 16.bug分支
 （1）解决bug时，通常新建bug分支修复，然后合并，最后删除
 （2）当手头工作没有解决完成时候，先把git stash，修复bug之后再git stash pop,回到工作现场
 （3）再master分支上做的修复，想要同步到dev上，可直接使用命令 git cherry-pick <commitID> ,把bug修复提交的修改同步到当前分支，避免重复劳动
->>>>>>> dev
+
 
