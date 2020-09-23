@@ -45,5 +45,37 @@ git支持多种网络协议，默认git://使用ssh,但也可以使用https等�
 （8）在本地创建和远程分支对应的分支，使用git checkout -b branch-name origin/branch-name，本地和远程分支的名称最好一致；
 （9）建立本地分支和远程分支的关联，使用git branch --set-upstream branch-name origin/branch-name；
 （10）从远程抓取分支，使用git pull，如果有冲突，要先处理冲突。
-
-
+17.Git多人合作模式
+（1）首先可是试图用git  push  origin  <branch name>来推送自己的修改
+（2）如果推送失败，则是因为远程分支比你的本地更新，需要先git pull试图合并
+（3）如果合并有冲突，则解决冲突，并在本地提交
+（4）没有冲突或解决冲突之后再用git push origin <branchname> 推送就能成功
+（5）吐过git pull 提示no tracking infomation则说明本地分支和远程分支的连接关系没有创建，用命令 git branch --set-upstream-to <branchname> origin/<brancName> 
+18.git rebase可以把本地未push的分支整理成直线，目的是使得我们查看历史提交的变化时更容易，因为分叉的提交需要三方对比
+19.git 标签
+（1）命令git tag <tagname> 用于新建一个标签，默认为head,也可以制定一个commit id
+（2）命令git tag -a <tagname> -m '标签说明信息' 可以制定标签信息
+（3）命令git tag可以查看所有标签
+（4）git push origin <tagname> 可以推送一个本地标签
+（5）git push origin --tags 可以推送全部未推送过得本地标签
+（6）git tag -d <tagname> 可以删除一个本地标签
+（7）git push origin :refs/tags/<tagname> 可以删除一个远程标签
+20.自定义git 
+（1）git config --global color.ui.true 可以让git显示显色 
+（2）忽略特殊文件需要编写.gitignore,改文件需要放进版本库里，并且可以对本文件版本管理
+（3）给命令配置别名 git config --global alias.st status   配置之后  git st = git status
+21.搭建git 服务器（linux）
+（1）安装git: sudu apt-get install git
+（2）创建一个git用户，用来运行git: sudu adduser git
+（3）创建证书登陆
+手机所有需要登陆的用户的公钥，就是他们自己的id_rsa.pub文件，把所有公钥导入/home/git/.ssh/authorized_keys 中，一行一个
+（4）初始化git仓库：选定一个目录作为git仓库。假定是/srv/sample.git,在/srv目录下输入命令：sudu git init --bare sample.git 
+Git就会创建一个裸仓库，裸仓库没有工作区，因为服务器上的Git仓库纯粹是为了共享，所以不让用户直接登录到服务器上去改工作区，并且服务器上的Git仓库通常都以.git结尾。然后，把owner改为git：
+sudo chown -R git:git sample.git
+（5）禁用shell登陆
+出于安全考虑，第二步创建的git用户不允许登录shell，这可以通过编辑/etc/passwd文件完成。找到类似下面的一行 
+git:x:1001:1001:,,,:/home/git:/bin/bas 改为：git:x:1001:1001:,,,:/home/git:/usr/bin/git-shell
+这样，git用户可以正常通过ssh使用git，但无法登录shell，因为我们为git用户指定的git-shell每次一登录就自动退出
+（6）克隆远程仓库 $ git clone git@server:/srv/sample.git
+（7）如果团队很小，把每个人的公钥收集起来放到服务器的/home/git/.ssh/authorized_keys文件里就是可行的。如果团队有几百号人，就没法这么玩了，这时，可以用Gitosis来管理公钥。
+22.sourceTree 免费Git图形界面工具
